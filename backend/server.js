@@ -42,8 +42,9 @@ if (ENV_VARS.NODE_ENV === "production") {
 app.listen(PORT, async () => {
   try {
     await connectDB();
-    console.log(`MongoDB connected!`);
-    console.log(`Server started at http://localhost:${PORT}`);
+    const serverUrl = process.env.NODE_ENV === 'production'
+      ? 'https://https-github-com-shivamup51-vibe.vercel.app/'
+      : `http://localhost:${PORT}`;
   } catch (err) {
     console.error("Failed to connect to MongoDB:", err);
     process.exit(1); // Exit the process if the MongoDB connection fails
